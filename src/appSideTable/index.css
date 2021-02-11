@@ -1,0 +1,10 @@
+#side-table {
+  padding: 0;
+  height: 100%;
+}
+#side-table .data-table {
+  height: calc(100vh - 216px);
+}
+#search-box {
+  height: 200px;
+}

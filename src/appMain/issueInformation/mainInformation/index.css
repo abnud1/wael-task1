@@ -1,0 +1,20 @@
+label[for="inventory-issue"],
+input#inventory-issue {
+  margin-top: 20px;
+}
+label[for="store"],
+input#store {
+  margin-top: 80px;
+}
+input#resource-category {
+  margin-top: 5px;
+}
+#main-info-labels > label {
+  display: block;
+}
+input#inventory-issue {
+  color: white;
+}
+#main-info-values > .form-control {
+  padding-left: 5px;
+}

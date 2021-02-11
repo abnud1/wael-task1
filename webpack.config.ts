@@ -63,6 +63,10 @@ export default function createConfig(_, env): Configuration {
     ],
     resolve: {
       extensions: [".js", ".jsx", ".ts", ".tsx"],
+      alias: {
+        "@util": "/src/util",
+        "@store": "/src/store",
+      },
     },
     devtool: mode === "development" ? "eval-source-map" : undefined,
   };

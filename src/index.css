@@ -1,0 +1,45 @@
+#app {
+  height: 100vh;
+  border-style: solid;
+  border-width: 6px 0 10px 17px;
+  color: white;
+  font-size: 0.8rem;
+
+  --app-dark: #1e2021;
+  --app-secondary: #31363b;
+  --app-primary: #138cd2;
+  --app-dark-input: #181a1b;
+}
+#app .btn {
+  font-size: 0.8rem;
+}
+.btn-primary {
+  background-color: var(--app-primary);
+  border-color: var(--app-primary);
+}
+.bg-primary {
+  background-color: var(--app-primary);
+}
+.bg-dark {
+  background-color: var(--app-dark) !important;
+}
+.bg-secondary {
+  background-color: var(--app-secondary) !important;
+}
+.border-secondary {
+  border-color: var(--app-secondary) !important;
+}
+input.form-control,
+input.form-control[readonly],
+input.form-control:focus {
+  background-color: var(--app-dark-input);
+  height: 20px;
+}
+textarea.form-control,
+textarea.form-control[readonly],
+textarea.form-control:focus {
+  background-color: var(--app-dark-input);
+}
+body {
+  overflow-y: scroll;
+}

@@ -1,0 +1,17 @@
+.data-table th,
+.data-table td {
+  white-space: nowrap;
+  padding: 5px;
+  vertical-align: middle;
+}
+.data-table tbody th:first-child,
+.data-table thead th:first-child {
+  padding: 0 0.5rem;
+  width: 16px;
+}
+.data-table tr.selected {
+  background-color: var(--app-primary) !important;
+}
+.rcs-custom-scroll .rcs-inner-handle {
+  background-color: #787878;
+}

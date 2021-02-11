@@ -1,0 +1,12 @@
+#secondary-info-values .form-control {
+  margin-bottom: 0.5rem;
+}
+#secondary-info-labels.col-4 {
+  padding: 0;
+}
+label[for="remarks"] {
+  margin-top: 75px;
+}
+textarea#remarks {
+  margin-top: 60px;
+}

@@ -1,0 +1,9 @@
+#issue-info .row {
+  margin: 0;
+}
+#issue-info.col-8 {
+  padding: 0;
+}
+#issue-secondary.col-4 {
+  padding-left: 2%;
+}

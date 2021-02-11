@@ -1,0 +1,7 @@
+#issue-contents-row .data-table table,
+#issue-contents-row .data-table {
+  height: 100%;
+}
+#issue-contents-row .title-bordered-content {
+  height: calc(100% - 25px);
+}
