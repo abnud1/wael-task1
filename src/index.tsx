@@ -37,7 +37,6 @@ axios
     localStorage.setItem("token", res.data.token);
     await store.dispatch(fetchColumns());
     await store.dispatch(fetchData());
-    localStorage.removeItem("token");
     ReactDOM.render(
       <Provider store={store}>
         <App />

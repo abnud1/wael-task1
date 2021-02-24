@@ -1,4 +1,3 @@
-#search-input {
+#search-box > .search-input {
   margin: 125px 15px 0;
-  position: relative;
 }

@@ -8,6 +8,7 @@
         "skipLibCheck": true,
         "moduleResolution": "node",
         "baseUrl": ".",
+        "allowSyntheticDefaultImports":true,
         "paths": {
             "@util/*": ["./src/util/*"],
             "@store/*": ["./src/store/*"],

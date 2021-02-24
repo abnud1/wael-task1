@@ -1,5 +1,5 @@
 import "./index.css";
-import SearchInput from "./searchInput";
+import SearchInput from "@util/searchInput";
 
 export default function SearchBox() {
   return (

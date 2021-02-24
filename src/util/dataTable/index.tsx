@@ -16,7 +16,7 @@ function DataTable(props: DataTableProps) {
   const tableClassname = `table table-bordered table-dark${
     striped ? " table-striped" : ""
   }`;
-  const [selectedRowId, setSelectedRowId] = useState<string | null>(null);
+  const [selectedRowId, setSelectedRowId] = useState<number | null>(null);
   return (
     <CustomScroll>
       <div className="data-table">

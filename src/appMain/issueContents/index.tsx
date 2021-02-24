@@ -1,12 +1,21 @@
 import { AppState } from "@store";
 import DataTable from "@util/dataTable";
 import TitleBordered from "@util/titleBordered";
-import { useSelector } from "react-redux";
+import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import {
+  addResource,
+  DataWithId,
+  fetchResources,
+  Resource,
+} from "@store/issues";
+import SearchInput from "@util/searchInput";
 import "./index.css";
 
 export default function IssueContents() {
-  const columns = useSelector((state: AppState) => {
-    return state.issues.columns.filter((v) =>
+  const columns = useSelector((state: AppState) =>
+    state.issues.columns.filter((v) =>
       [
         "resourcecode",
         "resourcename",
@@ -15,8 +24,8 @@ export default function IssueContents() {
         "unitcode",
         "store",
       ].includes(v.index)
-    );
-  });
+    )
+  );
   const data = useSelector((state: AppState) => {
     const result = [];
     if (state.issues.selectedRow) {
@@ -38,12 +47,86 @@ export default function IssueContents() {
           store: stores[i],
         });
       }
+    } else if (state.issues.addingIssue?.selectedResources) {
+      return state.issues.addingIssue.selectedResources;
     }
     return result;
   });
+  const categoryResources = useSelector((state: AppState) => {
+    if (state.issues.addingIssue) {
+      return state.issues.addingIssue.resources;
+    }
+    return [];
+  });
+  const [isChooseResourceModalOpen, setChooseResourceModalOpen] = useState(
+    false
+  );
+  const [quantity, setQuantity] = useState("");
+  const toggle = () => setChooseResourceModalOpen(!isChooseResourceModalOpen);
+  const dispatch = useDispatch();
+  const onAddClick = () => {
+    dispatch(fetchResources());
+    setChooseResourceModalOpen(true);
+  };
+  const onSelectedResource = (v: DataWithId) => {
+    const resource = v as Resource;
+    dispatch(addResource({ ...resource, quantity: Number(quantity) }));
+    setChooseResourceModalOpen(false);
+  };
   return (
-    <TitleBordered title="Issue Contents:">
-      <DataTable columns={columns} data={data} />
-    </TitleBordered>
+    <>
+      <TitleBordered title="Issue Contents:">
+        <div className="row">
+          <button
+            id="issue-contents-resource-add-button"
+            className="btn bg-dark border-primary text-white"
+            type="button"
+            onClick={onAddClick}
+          >
+            Add
+          </button>
+        </div>
+        <div className="row">
+          <DataTable columns={columns} data={data} />
+        </div>
+      </TitleBordered>
+      <Modal
+        id="resource-modal"
+        isOpen={isChooseResourceModalOpen}
+        toggle={toggle}
+      >
+        <ModalHeader toggle={toggle}>Resource Selection Dialog</ModalHeader>
+        <ModalBody>
+          <SearchInput dark />
+          <label htmlFor="modal-quantity">Quantity</label>
+          <input
+            name="modal-quantity"
+            id="modal-quantity"
+            className="form-control"
+            value={quantity}
+            onChange={(ev) => setQuantity(ev.target.value)}
+          />
+          <DataTable
+            columns={[
+              { title: "Serial Number", index: "id", visible: true },
+              { title: "Name", index: "name", visible: true },
+              { title: "Description", index: "description", visible: true },
+              { title: "Code", index: "code", visible: true },
+            ]}
+            data={categoryResources}
+            onSelectedRow={onSelectedResource}
+            striped
+          />
+        </ModalBody>
+        <ModalFooter>
+          <button className="" type="button">
+            OK
+          </button>
+          <button className="" onClick={toggle} type="button">
+            Cancel
+          </button>
+        </ModalFooter>
+      </Modal>
+    </>
   );
 }
